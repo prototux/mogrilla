@@ -1,0 +1,59 @@
+salut je cherche comment faire de la domotique pour pas cher
+salut je cherche comment instaler un os sur rasberry pi
+salut est ce que linux c'est dur
+salut je suis un pro en html
+salut je cherche quelqu'un pour me dev un site gratuitement
+j'ai un problème avec mon diy
+j'adore les frères poulain
+je veux faire de la domotique avec mon raspberry pi
+comment on accède à son nas en dehors de sa maison
+comment on fait
+tiens voilà mon schema fritzing
+tiens voilà mon code arduino
+mon programme tenait pas sur un arduino, du coup j'ai utilise un raspberry pi
+la programmation avec un microcontrolleur c'est trop complique
+tu penses que c'est mieux si j'utilise un raspberry pi ou un SoC?
+tu penses que c'est mieux si j'utilise un arduino ou un microcontrolleur?
+Toute ma domotique est sur un raspberry pi ça fonctionne nickel et c’est ultra secure
+mon nas est sur un raspberry pi je vois pas le problème ça fonctionne nickel
+c’est quoi GitHub ?
+j'ai fait une station meteo avec un arduino et un DHT-11
+j'ai fait une borne d'arcade avec un raspberry pi c'est genial
+j'ai suivi le tuto des freres poulain pour ma box domotique
+j'ai fait une camera de securite avec un espcam, y'a pas moins cher
+je fait de l'hebergement avec un cluster de raspberry pi
+j'ai remplace la radio de ma voiture avec un raspberry pi
+je veux pas faire du code, je veux juste avoir ma box domotique pour le moins cher
+j'ai fait une enceinte bluetooth avec un module aliexpress
+j'ai fait une enceinte bluetooth, meme pour 150 euros JBL ils proposent pas ca
+bonjour, j'aimerais savoir s'il y a moyen de programmer un raspberry pi avec arduino
+c'est possible de jouer a GTA V avec un raspberry pi?
+c'est possible d'avoir les plans gratuitement? ca me demande de payer je comprends pas
+bonjour, j'aimerais refaire une voiture mais j'ai que 100 euros vous croyez que c'est possible?
+salut, j'aimerais avoir une RTX 3090 mais j'ai 1000 euros pour le PC, y'a moyen de faire sa propre RTX?
+je ne comprends pas, j'ai branche 5M de LEDs RGB sur un arduino directement mais ca marche pas
+je sais pas pourquoi, j'ai branche mon module pelletier sur mon arduino mais ca fonctionne pas
+bonjour, c'est possible de creer son propre processeur en partant de rien? genre un intel i9
+salut, c'est possible de creer un composant en partant de rien? je pensais a une RTX 3090
+bonjour, c'est possible de faire sa propre imprimante 3D pour moins de 50 euros?
+bonjour, il existe des services pour avoir des impressions 3D gratuites?
+je cherche a faire mon propre systeme domotique, il y a des gens qui voudraient bien me faire le code?
+je cherche a creer mon jeu video, j'ai l'idee, mais je recherche des gens qui voudraient le coder
+c'est possible de reparer un processeur? le mien a fait de la fumee et ne fonctionne plus depuis
+je cherche des monteurs qui voudraient bien monter mes videos youtube gratuitement
+je comprends pas le code du hello world, quelqu'un pourrait m'expliquer?
+pour resoudre mon soucis avec mon raspberry pi j'ai fait un chmod 777
+vous savez ou il est possible de trouver une imprimante 3D a moins de 50 euros?
+vous savez ou je pourrais trouver un laser 100W a moins de 100 euros?
+ca veux dire quoi SoC?
+c'est quoi microcontrolleur? c'est comme un arduino?
+ca veux dire quoi SoC? c'est comme raspberry pi?
+je voudrais utiliser l'arduino de raspberry
+je cherche comment faire de la domotique pour le moins cher
+c'est possible de jouer a GTA V avec un raspberry pi je vois pas le problème ça fonctionne nickel
+c'est possible de jouer a GTA V avec un arduino?
+je voudrais utiliser un esp32 mais je le trouve pas avec arduino
+tu as fait ton ordinateur avec arduino?
+c'est possible de faire son propre arduino?
+c'est possible de faire son propre raspberry pi?
+je cherche a faire mon propre raspberry pi
