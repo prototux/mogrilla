@@ -1,10 +1,12 @@
+import logging
 import asyncio
 
 class Events():
-    def __init__(self):
+    def __init__(self, prefix):
         self.commands = {}
         self.logger = logging.getLogger('mogrilla')
         self.messenger = None
+        self.prefix = prefix
 
     def add_command(self, name, handler):
         self.commands[name] = handler
@@ -18,12 +20,12 @@ class Events():
         return self.commands[command](data)
 
     def handle_message(self, message, author):
-        if message.startswith('!'):
+        if message.startswith(self.prefix):
             if len(message.split(' ',1)) == 1:
-                command = message.replace('!', '')
+                command = message.replace(self.prefix, '')
                 message = ''
             else:
-                command = message.split(' ',1)[0].replace('!', '')
+                command = message.split(' ',1)[0].replace(self.prefix, '')
                 message = message.split(' ',1)[1]
 
             return self.handle_command(command, {'message': message, 'author': author})

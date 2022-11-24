@@ -23,7 +23,7 @@ class Mogrilla():
             self.logger.debug('Configuration loaded')
 
         # Init events handler
-        self.events = Events()
+        self.events = Events(self.config.get('prefix', '!'))
 
         # Init skills
         self.loadSkills()
