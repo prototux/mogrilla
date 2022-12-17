@@ -14,13 +14,13 @@ class Mogrilla():
 
         # Load config
         self.config = {}
-        self.logger.info('Loading configuration')
+        self.logger.info('(core) loading configuration')
         self.loadConfig(config)
         if not self.config:
-            self.logger.critical('Invalid config!')
+            self.logger.critical('(core) FATAL: invalid config!')
             sys.exit(1)
         else:
-            self.logger.debug('Configuration loaded')
+            self.logger.debug('(core) configuration loaded')
 
         # Init events handler
         self.events = Events(self.config.get('prefix', '!'))
@@ -31,7 +31,7 @@ class Mogrilla():
         # Init messaging thread
         self.loadMessaging()
 
-        self.logger.info('Init done')
+        self.logger.info('(core) init done')
 
     def initLogging(self):
         # Create logger with debug level
@@ -52,15 +52,15 @@ class Mogrilla():
             try:
                 new_config = yaml.load(config_file, Loader=yaml.SafeLoader)
             except yaml.YAMLError:
-                self.logger.error('Invalid configuration file')
+                self.logger.error('(core) error: invalid configuration file')
                 return
 
         if not 'skills' in new_config:
-            self.logger.error('No skills in config')
+            self.logger.error('(core) error: no skills in config')
             return
 
         if not 'messaging' in new_config:
-            self.logger.error('No messaging connector in config')
+            self.logger.error('(core) error: no messaging connector in config')
             return
 
         self.config = new_config
@@ -78,9 +78,9 @@ class Mogrilla():
             time.sleep(10)
 
     def reload(self, signum, frame):
-        self.logger.info('Reloading config')
+        self.logger.info('(core) reloading config')
         self.loadConfig()
 
     def exit(self, signum, frame):
-        self.logger.info('Bye')
+        self.logger.info('(core) bye')
         sys.exit(0)
