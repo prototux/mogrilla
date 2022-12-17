@@ -11,11 +11,11 @@ class quake():
         self.player_regex = re.compile(r'^(\-?\d+) (\d+) "(.*)"')
 
         if not 'server' in config:
-            self.logger.error('quake: no server in config')
+            self.logger.error('(quake) error: no server in config')
             return
 
         if not 'chan' in config:
-            self.logger.error('quake: no chan in config')
+            self.logger.error('(quake) error: no chan in config')
             return
 
         self.client = rcon(self.logger, config['server'], config.get('password'))
@@ -31,7 +31,7 @@ class quake():
         while True:
             # Reconnect if disconnected
             if not self.client.cmd('getinfo'):
-                self.logger.error('quake: Got disconnected, reconnecting...')
+                self.logger.error('(quake) error: got disconnected, reconnecting...')
                 self.client.connect()
 
             # Get current data
@@ -60,7 +60,7 @@ class quake():
     def update(self):
         ret = self.client.cmd('getstatus')
         if not ret:
-            self.logger.error('quake: No status data')
+            self.logger.error('(quake) error: no status data')
             return
 
         data = ret['data']
@@ -84,7 +84,7 @@ class quake():
 
             raw_player = self.player_regex.match(player.decode('utf-8'))
             if not raw_player:
-                self.logger.warn(f'quake: cannnot match player {player}')
+                self.logger.warn(f'(quake) warn: cannnot match player {player}')
                 continue
 
             frags, ping, name = raw_player.groups()
@@ -103,17 +103,17 @@ class rcon():
             self.address, self.port = server.split(':')
             self.port = int(self.port)
         except:
-            self.logger.error('RCON: Server must be in "addr:port" format')
+            self.logger.error('(quake) rcon error: eerver must be in "addr:port" format')
 
     def connect(self):
         if not self.address or not self.port:
-            self.logger.error('RCON: Cannot connect without address and port')
+            self.logger.error('(quake) rcon error: eannot connect without address and port')
             return
 
         try:
             self.sock.connect((self.address, self.port))
         except(socket.error) as e:
-            self.logger.error(f'RCON: Cannot connect: {e}')
+            self.logger.error(f'(quake) rcon error: eannot connect: {e}')
 
     def send(self, data):
         self.sock.send(b''.join([self.packet_prefix, str.encode(data), b'\n']))
@@ -123,7 +123,7 @@ class rcon():
         try:
             return self.sock.recv(4096)
         except(socket.error) as e:
-            self.logger.error(f'RCON: Error receiving data: {e}')
+            self.logger.error(f'(quake) rcon error: error receiving data: {e}')
 
     def cmd(self, cmd, timeout=1, retries=3):
         while retries:
@@ -137,25 +137,25 @@ class rcon():
                 return self.parse(data)
 
             retries -= 1
-        self.logger.error('RCON: Command timed out')
+        self.logger.error('(quake) rcon error: command timed out')
 
     def rcon_cmd(seld, cmd):
         if not self.password:
-            self.logger.error('RCON: Cannot rcon without password')
+            self.logger.error('(quake) rcon error: Cannot rcon without password')
             return
 
         ret = self.cmd(f'rcon "{self.rcon_password}" {cmd}')
         if r[1] == 'No rconpassword set on the server.\n' or r[1] == 'Bad rconpassword.\n':
-            self.logger.error(f'RCON: Error during rcon command: {r[1]}')
+            self.logger.error(f'(quake) rcon error: error during rcon command: {r[1]}')
 
     def parse(self, data):
         if data.find(self.packet_prefix) != 0:
-            self.logger.error('RCON: Malformed packet (no prefix)')
+            self.logger.error('(quake) rcon error: malformed packet (no prefix)')
             return
 
         fl_len = data.find(b'\n')
         if fl_len == -1:
-            self.logger.error('RCON: Malformed packet (no newline)')
+            self.logger.error('(quake) rcon error: malformed packet (no newline)')
 
         ret = {
             'type': data[len(self.packet_prefix):fl_len],

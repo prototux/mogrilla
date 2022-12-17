@@ -12,7 +12,7 @@ class ddodg():
     def ddodg(self, data):
         msg = data['message']
         author = data['author']
-        self.logger.info(f'Got politics for {msg}')
+        self.logger.info(f'(ddodg) got req for {msg}')
 
         headers = {
             'authority': 'chatswrap.com',

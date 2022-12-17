@@ -8,5 +8,5 @@ class hello():
 
     def hello(self, data):
         author = data['author']
-        self.logger.info(f'Got hello from {author}')
+        self.logger.info(f'(hello) got hello from {author}')
         return f'Hello {author.mention}!'
