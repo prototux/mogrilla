@@ -53,7 +53,8 @@ class quake():
                 if curplayers:
                     cnt = f'Stats for {curmap}:\n'
                     for player in curplayers:
-                        cnt+=f'**{player["name"]}**: {player["frags"]}\n'
+                        name = re.sub(r'\^[0-9]', '', player['name'])
+                        cnt+=f'**{name}**: {player["frags"]}\n'
                     self.events.send_message(self.config['chan'], cnt)
 
             # Wait a second before updating
