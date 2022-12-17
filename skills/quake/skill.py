@@ -118,14 +118,14 @@ class rcon():
     def send(self, data):
         self.sock.send(b''.join([self.packet_prefix, str.encode(data), b'\n']))
 
-    def recv(self, timeout=30):
+    def recv(self, timeout=5):
         self.sock.settimeout(timeout)
         try:
             return self.sock.recv(4096)
         except(socket.error) as e:
             self.logger.error(f'(quake) rcon error: error receiving data: {e}')
 
-    def cmd(self, cmd, timeout=30, retries=3):
+    def cmd(self, cmd, timeout=5, retries=3):
         while retries:
             self.send(cmd)
             try:
