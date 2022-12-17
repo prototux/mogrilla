@@ -72,9 +72,9 @@ class discord():
         self.loop.run_forever()
 
     async def send_msg(self, chan, message, file=None):
-        self.logger.info(f'Sending {message} to {chan}')
+        self.logger.info(f'(discord) sending {message} to {chan}')
 
         for channel in self.client.get_all_channels():
             if channel.name == chan:
-                self.logger.info('Found chan')
+                self.logger.info('(discord) => found chan')
                 await channel.send(message, file=file)
