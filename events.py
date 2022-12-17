@@ -12,9 +12,9 @@ class Events():
         self.commands[name] = handler
 
     def handle_command(self, command, data):
-        self.logger.info(f'got command {command}')
+        self.logger.info(f'(events) got command {command}')
         if not command in self.commands:
-            self.logger.error('Error: no command')
+            self.logger.error('(events) error: no command')
             return
 
         return self.commands[command](data)
@@ -31,8 +31,11 @@ class Events():
             return self.handle_command(command, {'message': message, 'author': author})
 
     def send_message(self, chan, message, file=None):
+        self.logger.info(f'(events) got message for chan {chan}')
         if self.messenger:
             self.messenger.add_msg(chan, message, file)
+        else:
+            self.logger.error('(events) error: no messenger')
 
     def hl(self, username):
         pass

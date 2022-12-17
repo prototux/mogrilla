@@ -16,27 +16,27 @@ class discord():
             super().__init__(intents=intents)
 
         async def on_ready(self):
-            self.logger.info(f'Logged on as {self.user}')
+            self.logger.info(f'(discord) logged on as {self.user}')
 
         async def on_message(self, message):
             # Ignore self messages
             if message.author == self.user:
                 return
 
-            self.logger.info(f'Message from {message.author}: {message.content}')
+            self.logger.info(f'(discord) message from {message.author}: {message.content}')
 
             ret = self.events.handle_message(message.content, message.author)
             self.logger.info(ret)
             if ret:
-                self.logger.info(f'==> {ret}')
+                self.logger.info(f'(discord) ==> {ret}')
                 await message.channel.send(ret)
 
     def __init__(self, config, events):
         self.logger = logging.getLogger('mogrilla')
-        self.logger.info('Init discord plugin')
+        self.logger.info('(discord) Init plugin')
 
         if not 'token' in config:
-            self.logger.error('discord: no token in config')
+            self.logger.error('(discord) error: no token in config')
             return
 
         self.events = events
@@ -48,12 +48,14 @@ class discord():
         threading.Thread(target=self.messenger, daemon=True).start()
 
     def add_msg(self, chan, message, file=None):
+        self.logger.info(f'(discord) got message for chan {chan}')
         self.messages.append({'chan': chan, 'msg': message, 'file': file})
 
     def messenger(self):
         while True:
             if len(self.messages) > 0:
                 message = self.messages.pop()
+                self.logger.info(f'(discord) sending message for chan {message["chan"]}')
                 self.loop.create_task(self.send_msg(message['chan'], message['msg'], message['file']))
             time.sleep(0.01)
 
