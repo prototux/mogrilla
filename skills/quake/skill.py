@@ -130,7 +130,7 @@ class rcon():
                 data = None
 
             if data:
-                return self.parse(data)
+                return self.parse(data[0])
 
             retries -= 1
         self.logger.error('(quake) rcon error: command timed out')
