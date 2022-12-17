@@ -30,9 +30,9 @@ class Events():
 
             return self.handle_command(command, {'message': message, 'author': author})
 
-    def send_message(self, chan, message):
+    def send_message(self, chan, message, file=None):
         if self.messenger:
-            self.messenger.add_msg(chan, message)
+            self.messenger.add_msg(chan, message, file)
 
     def hl(self, username):
         pass

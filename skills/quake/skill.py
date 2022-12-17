@@ -118,7 +118,7 @@ class rcon():
     def send(self, data):
         self.sock.send(b''.join([self.packet_prefix, str.encode(data), b'\n']))
 
-    def recv(self, timeout=2):
+    def recv(self, timeout=30):
         self.sock.settimeout(timeout)
         try:
             return self.sock.recv(4096)

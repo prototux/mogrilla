@@ -47,14 +47,14 @@ class discord():
         threading.Thread(target=self.run, daemon=True).start()
         threading.Thread(target=self.messenger, daemon=True).start()
 
-    def add_msg(self, chan, message):
-        self.messages.append({'chan': chan, 'msg': message})
+    def add_msg(self, chan, message, file=None):
+        self.messages.append({'chan': chan, 'msg': message, 'file': file})
 
     def messenger(self):
         while True:
             if len(self.messages) > 0:
                 message = self.messages.pop()
-                self.loop.create_task(self.send_msg(message['chan'], message['msg']))
+                self.loop.create_task(self.send_msg(message['chan'], message['msg'], message['file']))
             time.sleep(0.01)
 
     def run(self):
@@ -69,11 +69,10 @@ class discord():
         self.loop.create_task(self.client.start(self.config['token']))
         self.loop.run_forever()
 
-    async def send_msg(self, chan, message):
+    async def send_msg(self, chan, message, file=None):
         self.logger.info(f'Sending {message} to {chan}')
 
         for channel in self.client.get_all_channels():
-            self.logger.debug(f' -> {channel.name}')
             if channel.name == chan:
-                self.logger.info('Got our chan')
-                await channel.send(message)
+                self.logger.info('Found chan')
+                await channel.send(message, file=file)
