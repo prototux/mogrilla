@@ -50,9 +50,9 @@ class quake():
             # Check if the map changed (eg. last match finished), and send stats
             if curmap != self.map:
                 # Only send if there was players during the match
-                if self.players:
+                if curplayers:
                     cnt = f'Stats for {curmap}:\n'
-                    for player in self.players:
+                    for player in curplayers:
                         cnt+=f'**{player["name"]}**: {player["frags"]}\n'
                     self.events.send_message(self.config['chan'], cnt)
 
