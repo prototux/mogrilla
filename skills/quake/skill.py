@@ -111,12 +111,6 @@ class rcon():
             self.logger.error('(quake) rcon error: eannot connect without address and port')
             return
 
-        try:
-            self.sock.connect((self.address, self.port))
-            self.logger.info('(quake) connected')
-        except(socket.error) as e:
-            self.logger.error(f'(quake) rcon error: cannot connect: {e}')
-
     def send(self, data):
         self.sock.sendto(b''.join([self.packet_prefix, str.encode(data), b'\n']), (self.address, self.port))
 
