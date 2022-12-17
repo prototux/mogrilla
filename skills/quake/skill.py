@@ -125,7 +125,7 @@ class rcon():
         except(socket.error) as e:
             self.logger.error(f'(quake) rcon error: error receiving data: {e}')
 
-    def cmd(self, cmd, timeout=1, retries=3):
+    def cmd(self, cmd, timeout=30, retries=3):
         while retries:
             self.send(cmd)
             try:
