@@ -55,7 +55,7 @@ class discord():
         while True:
             if len(self.messages) > 0:
                 message = self.messages.pop()
-                self.logger.info(f'(discord) sending message for chan {message["chan"]}')
+                self.logger.info(f'(discord) create task for chan {message["chan"]}')
                 self.loop.create_task(self.send_msg(message['chan'], message['msg'], message['file']))
             time.sleep(0.01)
 
@@ -72,7 +72,7 @@ class discord():
         self.loop.run_forever()
 
     async def send_msg(self, chan, message, file=None):
-        self.logger.info(f'(discord) sending {message} to {chan}')
+        self.logger.info(f'(discord) sending to {chan}')
 
         for channel in self.client.get_all_channels():
             if channel.name == chan:
