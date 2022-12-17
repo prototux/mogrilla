@@ -102,6 +102,7 @@ class rcon():
         try:
             self.address, self.port = server.split(':')
             self.port = int(self.port)
+            self.logger.info(f'(quake) init client for server {self.address} and port {self.port}')
         except:
             self.logger.error('(quake) rcon error: eerver must be in "addr:port" format')
 
@@ -112,16 +113,17 @@ class rcon():
 
         try:
             self.sock.connect((self.address, self.port))
+            self.logger.info('(quake) connected')
         except(socket.error) as e:
-            self.logger.error(f'(quake) rcon error: eannot connect: {e}')
+            self.logger.error(f'(quake) rcon error: cannot connect: {e}')
 
     def send(self, data):
-        self.sock.send(b''.join([self.packet_prefix, str.encode(data), b'\n']))
+        self.sock.sendto(b''.join([self.packet_prefix, str.encode(data), b'\n']), (self.address, self.port))
 
     def recv(self, timeout=5):
         self.sock.settimeout(timeout)
         try:
-            return self.sock.recv(4096)
+            return self.sock.recvfrom(4096)
         except(socket.error) as e:
             self.logger.error(f'(quake) rcon error: error receiving data: {e}')
 
