@@ -8,18 +8,19 @@ class quake():
     def __init__(self, config, events):
         self.events = events
         self.logger = logging.getLogger('mogrilla')
+        self.config = config
 
         self.player_regex = re.compile(r'^(\-?\d+) (\d+) "(.*)"')
 
-        if not 'server' in config:
+        if not 'server' in self.config:
             self.logger.error('(quake) error: no server in config')
             return
 
-        if not 'chan' in config:
+        if not 'chan' in self.config:
             self.logger.error('(quake) error: no chan in config')
             return
 
-        self.client = rcon(self.logger, config['server'], config.get('password'))
+        self.client = rcon(self.logger, self.config['server'], self.config.get('password'))
         self.thread = threading.Thread(target=self.run, daemon=True)
         self.thread.start()
 
