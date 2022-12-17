@@ -6,6 +6,7 @@ import socket
 
 class quake():
     def __init__(self, config, events):
+        self.events = events
         self.logger = logging.getLogger('mogrilla')
 
         self.player_regex = re.compile(r'^(\-?\d+) (\d+) "(.*)"')
@@ -52,7 +53,7 @@ class quake():
                     cnt = f'Stats for {curmap}:\n'
                     for player in self.players:
                         cnt+=f'**{player["name"]}**: {player["frags"]}\n'
-                    events.send_msg(self.config['chan'], cnt)
+                    self.events.send_message(self.config['chan'], cnt)
 
             # Wait a second before updating
             time.sleep(2)
